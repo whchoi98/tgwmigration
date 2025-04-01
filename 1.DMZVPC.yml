@@ -799,6 +799,38 @@ Resources:
       DestinationCidrBlock: !Ref DefaultRouteBlock
       VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId2
 
+#################################################
+# Create NEWTGW routing table         #
+#################################################
+
+  NEWTGWSubnetARouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-NEWTGW-A-RT'
+
+  NEWTGWSubnetRouteTableAAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref NEWTGWSubnetA
+      RouteTableId: !Ref NEWTGWSubnetARouteTable
+
+  NEWTGWSubnetBRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-NEWTGW-B-RT'
+
+  NEWTGWSubnetRouteTableBAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref NEWTGWSubnetB
+      RouteTableId: !Ref NEWTGWSubnetBRouteTable
+
 ###############################################################################
 # Create-Security-Group: VPC Security Group - HTTP, HTTPS, ICMP , SSH Permit #
 ###############################################################################
