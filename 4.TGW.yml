@@ -71,21 +71,6 @@ Resources:
           Value: !Sub '${AWS::StackName}-DMZVPC-RT'
       TransitGatewayId: !Ref TransitGateway01
 
-#  TransitGatewayRouteTableVPC01:
-#    Type: "AWS::EC2::TransitGatewayRouteTable"
-#    Properties:
-#      Tags:
-#        - Key: Name
-#          Value: !Sub '${AWS::StackName}-VPC01-RT'
-#      TransitGatewayId: !Ref TransitGateway01
-#
-#  TransitGatewayRouteTableVPC02:
-#    Type: "AWS::EC2::TransitGatewayRouteTable"
-#    Properties:
-#      Tags:
-#        - Key: Name
-#          Value: !Sub '${AWS::StackName}-VPC02-RT'
-#      TransitGatewayId: !Ref TransitGateway01
 ##############################################
 # Connect to the Transit Gateway#
 ##############################################
@@ -181,41 +166,6 @@ Resources:
       DestinationCidrBlock: !Ref VPC02CIDRBlock
       TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
 
-#  TransitGatewayRoute01VPC01:
-#    Type: AWS::EC2::TransitGatewayRoute
-#    Properties:
-#      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC01
-#      DestinationCidrBlock: !Ref VPC01CIDRBlock
-#      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableVPC01
-#
-#  TransitGatewayRoute02VPC01:
-#    Type: AWS::EC2::TransitGatewayRoute
-#    Properties:
-#      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC02
-#      DestinationCidrBlock: !Ref VPC02CIDRBlock
-#      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableVPC01
-#
-#  TransitGatewayRoute03VPC01:
-#    Type: AWS::EC2::TransitGatewayRoute
-#    Properties:
-#      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentDMZVPC
-#      DestinationCidrBlock: !Ref AllPrivateBlock
-#      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableVPC01
-#
-#  TransitGatewayRoute01VPC02:
-#    Type: AWS::EC2::TransitGatewayRoute
-#    Properties:
-#      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC02
-#      DestinationCidrBlock: !Ref VPC02CIDRBlock
-#      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableVPC02
-#
-#  TransitGatewayRoute02VPC02:
-#    Type: AWS::EC2::TransitGatewayRoute
-#    Properties:
-#      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC01
-#      DestinationCidrBlock: !Ref VPC01CIDRBlock
-#      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableVPC02
-
 ### DMZVPC route table configuration
 
   DMZVPCAddRoute1:
@@ -239,6 +189,50 @@ Resources:
       TransitGatewayId: !Ref TransitGateway01
       RouteTableId: 
         Fn::ImportValue: !Sub "DMZVPC-PrivateSubnetBRouteTableID"
+
+  DMZVPCAddRoute3:
+    DependsOn:
+      - TransitGateway01
+      - TransitGatewayAttachmentDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref VPC01CIDRBlock
+      TransitGatewayId: !Ref TransitGateway01
+      RouteTableId: 
+        Fn::ImportValue: !Sub "DMZVPC-FWOUTSubnetARouteTableID"
+
+  DMZVPCAddRoute4:
+    DependsOn:
+      - TransitGateway01
+      - TransitGatewayAttachmentDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref VPC02CIDRBlock
+      TransitGatewayId: !Ref TransitGateway01
+      RouteTableId: 
+        Fn::ImportValue: !Sub "DMZVPC-FWOUTSubnetARouteTableID"
+
+  DMZVPCAddRoute5:
+    DependsOn:
+      - TransitGateway01
+      - TransitGatewayAttachmentDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref VPC01CIDRBlock
+      TransitGatewayId: !Ref TransitGateway01
+      RouteTableId: 
+        Fn::ImportValue: !Sub "DMZVPC-FWOUTSubnetBRouteTableID"
+
+  DMZVPCAddRoute6:
+    DependsOn:
+      - TransitGateway01
+      - TransitGatewayAttachmentDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref VPC02CIDRBlock
+      TransitGatewayId: !Ref TransitGateway01
+      RouteTableId: 
+        Fn::ImportValue: !Sub "DMZVPC-FWOUTSubnetBRouteTableID"
 
 ### VPC01 route table configuration
   VPC01AddRoute1:
