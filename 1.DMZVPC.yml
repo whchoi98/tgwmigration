@@ -1704,6 +1704,18 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-TGW-Subnet-B"
 
+  NEWTGWSubnetA:
+    Description: NEWTGWSubnetA
+    Value: !Ref NEWTGWSubnetA
+    Export:
+      Name: !Sub "${AWS::StackName}-NEWTGW-Subnet-A"
+
+  NEWTGWSubnetB:
+    Description: NEWTGWSubnetB
+    Value: !Ref NEWTGWSubnetB
+    Export:
+      Name: !Sub "${AWS::StackName}-NEWTGW-Subnet-B"
+      
   FWINSubnetARouteTable:
     Description: FWINSubnetARouteTableID
     Value: !Ref FWINSubnetARouteTable
