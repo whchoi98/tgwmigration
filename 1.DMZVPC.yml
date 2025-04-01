@@ -1090,7 +1090,7 @@ Resources:
             DeleteOnTermination: true
       Tags:
         - Key: Name
-          Value: !Sub '${AWS::StackName}-Private-B-10.11.2.102'
+          Value: !Sub '${AWS::StackName}-Private-B-10.11.24.102'
       UserData:
         Fn::Base64:
           Fn::Sub: |
