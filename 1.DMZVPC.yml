@@ -21,6 +21,8 @@ Metadata:
          - PrivateSubnetBBlock
          - TGWSubnetABlock
          - TGWSubnetBBlock
+         - NEWTGWSubnetABlock
+         - NEWTGWSubnetBBlock
          - DefaultRouteBlock
          - VPC1CIDRBlock
          - VPC2CIDRBlock
@@ -449,6 +451,7 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-TGW-Subnet-B'
+
 ###############################################
 # Create-NEWTGW-Subnet: VPC NEWTGW_Subnet_a,b #
 ###############################################
@@ -473,7 +476,7 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-NEWTGW-Subnet-B'
-          
+
 ################################################
 # Create-RouteTable: VPC IGW Ingress Route     #
 ################################################
@@ -593,7 +596,7 @@ Resources:
       RouteTableId: !Ref NATGWSubnetARouteTable
       DestinationCidrBlock: !Ref DefaultRouteBlock
       GatewayId: !Ref InternetGateway
-
+ 
   NATGWRouteTableA2:
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::Route
@@ -636,7 +639,7 @@ Resources:
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::Route
     Properties:
-      RouteTableId: !Ref NATGWSubnetARouteTable
+      RouteTableId: !Ref NATGWSubnetBRouteTable
       DestinationCidrBlock: !Ref VPC1CIDRBlock
       VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId2
       
@@ -644,7 +647,7 @@ Resources:
     DependsOn: VPCGatewayAttachment
     Type: AWS::EC2::Route
     Properties:
-      RouteTableId: !Ref NATGWSubnetARouteTable
+      RouteTableId: !Ref NATGWSubnetBRouteTable
       DestinationCidrBlock: !Ref VPC2CIDRBlock
       VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId2
 
@@ -1714,7 +1717,7 @@ Outputs:
     Value: !Ref NEWTGWSubnetB
     Export:
       Name: !Sub "${AWS::StackName}-NEWTGW-Subnet-B"
-      
+
   FWINSubnetARouteTable:
     Description: FWINSubnetARouteTableID
     Value: !Ref FWINSubnetARouteTable
@@ -1798,8 +1801,7 @@ Outputs:
     Value: !Ref NEWTGWSubnetBRouteTable
     Export:
       Name: !Sub "${AWS::StackName}-NEWTGWSubnetBRouteTableID"
- 
-  
+
   ALBSecurityGroup:
     Description: ALBSecurityGroup
     Value: !Ref ALBSecurityGroup
