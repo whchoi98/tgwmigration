@@ -1776,6 +1776,31 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-PrivateSubnetBRouteTableID"
   
+  TGWSubnetARouteTable:
+    Description: TGWSubnetARouteTableID
+    Value: !Ref TGWSubnetARouteTable
+    Export:
+      Name: !Sub "${AWS::StackName}-TGWSubnetARouteTableID"
+
+  TGWSubnetBRouteTable:
+    Description: TGWSubnetBRouteTableID
+    Value: !Ref TGWSubnetBRouteTable
+    Export:
+      Name: !Sub "${AWS::StackName}-TGWSubnetBRouteTableID"
+
+  NEWTGWSubnetARouteTable:
+    Description: NEWTGWSubnetARouteTableID
+    Value: !Ref NEWTGWSubnetARouteTable
+    Export:
+      Name: !Sub "${AWS::StackName}-NEWTGWSubnetARouteTableID"
+
+  NEWTGWSubnetBRouteTable:
+    Description: NEWTGWSubnetBRouteTableID
+    Value: !Ref NEWTGWSubnetBRouteTable
+    Export:
+      Name: !Sub "${AWS::StackName}-NEWTGWSubnetBRouteTableID"
+ 
+  
   ALBSecurityGroup:
     Description: ALBSecurityGroup
     Value: !Ref ALBSecurityGroup
