@@ -593,7 +593,6 @@ Resources:
       RouteTableId: !Ref NATGWSubnetARouteTable
       DestinationCidrBlock: !Ref DefaultRouteBlock
       GatewayId: !Ref InternetGateway
-      VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId1
 
   NATGWRouteTableA2:
     DependsOn: VPCGatewayAttachment
