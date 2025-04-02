@@ -148,9 +148,11 @@ go run ./list-tgw-route-table.go
 ```
 
 ###  참고 사항
-	•	리전은 기본적으로 ap-northeast-2 (서울)을 기준으로 설정되어 있습니다.
-	•	CloudFormation 배포는 CAPABILITY_NAMED_IAM 권한이 필요합니다.
-	•	Golang CLI 도구 사용 시 Amazon Linux 2 환경에서 Go 1.20+ 설치가 필요합니다.
+
+리전은 기본적으로 ap-northeast-2 (서울)을 기준으로 설정되어 있습니다.
+CloudFormation 배포는 CAPABILITY_NAMED_IAM 권한이 필요합니다.
+Golang CLI 도구 사용 시 Amazon Linux 2 환경에서 Go 1.20+ 설치가 필요합니다.
+
 ```
 sudo yum update -y
 sudo yum install -y golang
