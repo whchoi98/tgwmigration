@@ -138,13 +138,13 @@ go run ./list-vpc-route.go
 
 ### 🔎 TGW 라우팅 테이블 조회
 
+Shell 버전
 ```
-# Shell 버전
 ./list-tgw-route.sh
 ```
 
+Golang 버전
 ```
-# Golang 버전
 go run ./list-tgw-route-table.go
 ```
 
