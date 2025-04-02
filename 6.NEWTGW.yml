@@ -85,7 +85,7 @@ Resources:
     Properties:
       SubnetIds:
         - Fn::ImportValue: !Sub "NEWDMZVPC-TGW-Subnet-A"
-        - Fn::ImportValue: !Sub "NEWDMZVPC-TGW-Subnet-A"
+        - Fn::ImportValue: !Sub "NEWDMZVPC-TGW-Subnet-B"
       Options:
         ApplianceModeSupport: enable
       Tags:
@@ -100,7 +100,7 @@ Resources:
     Properties:
       SubnetIds:
         - Fn::ImportValue: !Sub "DMZVPC-NEWTGW-Subnet-A"
-        - Fn::ImportValue: !Sub "DMZVPC-NEWTGW-Subnet-A"
+        - Fn::ImportValue: !Sub "DMZVPC-NEWTGW-Subnet-B"
       Options:
         ApplianceModeSupport: enable
       Tags:
