@@ -128,7 +128,6 @@ cd ~/tgwmigration/
 
 ```
 # Shell 버전
-```
 ./list-vpc-route.sh
 ```
 
