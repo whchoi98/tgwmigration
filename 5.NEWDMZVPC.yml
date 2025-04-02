@@ -24,6 +24,7 @@ Metadata:
          - NEWTGWSubnetABlock
          - NEWTGWSubnetBBlock
          - DefaultRouteBlock
+         - DMZVPCCIDRBlock
          - VPC1CIDRBlock
          - VPC2CIDRBlock
          - VPC3CIDRBlock
@@ -134,15 +135,20 @@ Parameters:
     Default: 0.0.0.0/0
     Description: "Enter desired CIDR to Default route"
 
+  DMZVPCCIDRBlock:
+    Type: String
+    Default: 10.11.0.0/16
+    Description: "DMZVPC CidrBlock"
+
   VPC1CIDRBlock:
     Type: String
     Default: 10.1.0.0/16
-    Description: "Enter desired CIDR to VPC1 route"
+    Description: "VPC01 CidrBlock"
 
   VPC2CIDRBlock:
     Type: String
     Default: 10.2.0.0/16
-    Description: "Enter desired CIDR to VPC2 route"
+    Description: "VPC02 CidrBlock"
 
   VPC01PrivateAInstance1:
     Type: String
@@ -613,6 +619,14 @@ Resources:
       DestinationCidrBlock: !Ref VPC2CIDRBlock
       VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId1
 
+  NATGWRouteTableA4:
+    DependsOn: VPCGatewayAttachment
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref NATGWSubnetARouteTable
+      DestinationCidrBlock: !Ref DMZVPCCIDRBlock
+      VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId1
+
   NATGWSubnetBRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -651,6 +665,13 @@ Resources:
       DestinationCidrBlock: !Ref VPC2CIDRBlock
       VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId2
 
+  NATGWRouteTableB4:
+    DependsOn: VPCGatewayAttachment
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref NATGWSubnetBRouteTable
+      DestinationCidrBlock: !Ref DMZVPCCIDRBlock
+      VpcEndpointId: !GetAtt FWOUTVpceIds.FwVpceId2
 ################################################
 # Create-RouteTable: Public Route Table    #
 ################################################
