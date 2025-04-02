@@ -181,13 +181,6 @@ Resources:
   TransitGatewayRoute03NEWDMZVPC:
     Type: AWS::EC2::TransitGatewayRoute
     Properties:
-      TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentDMZVPC
-      DestinationCidrBlock: !Ref DefaultRouteBlock
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
-
-  TransitGatewayRoute03NEWDMZVPC:
-    Type: AWS::EC2::TransitGatewayRoute
-    Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC01
       DestinationCidrBlock: !Ref VPC01CIDRBlock
       TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
@@ -198,6 +191,13 @@ Resources:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC02
       DestinationCidrBlock: !Ref VPC02CIDRBlock
       TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
+
+  TransitGatewayRoute05NEWDMZVPC:
+     Type: AWS::EC2::TransitGatewayRoute
+     Properties:
+       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentNEWDMZVPC
+       DestinationCidrBlock: !Ref DefaultRouteBlock
+       TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
 ### NEWDMZVPC route table configuration
 
@@ -310,6 +310,50 @@ Resources:
       TransitGatewayId: !Ref TransitGateway02
       RouteTableId: 
         Fn::ImportValue: !Sub "NEWDMZVPC-PublicSubnetBRouteTableID"
+
+  NEWDMZVPCAddRoute11:
+    DependsOn:
+      - TransitGateway02
+      - TransitGatewayAttachmentNEWDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref AllPrivateBlock
+      TransitGatewayId: !Ref TransitGateway02
+      RouteTableId: 
+        Fn::ImportValue: !Sub "NEWDMZVPC-TGWSubnetARouteTableID"
+
+  NEWDMZVPCAddRoute12:
+    DependsOn:
+      - TransitGateway02
+      - TransitGatewayAttachmentNEWDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref AllPrivateBlock
+      TransitGatewayId: !Ref TransitGateway02
+      RouteTableId: 
+        Fn::ImportValue: !Sub "NEWDMZVPC-TGWSubnetBRouteTableID"
+
+  NEWDMZVPCAddRoute13:
+    DependsOn:
+      - TransitGateway02
+      - TransitGatewayAttachmentNEWDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref AllPrivateBlock
+      TransitGatewayId: !Ref TransitGateway02
+      RouteTableId: 
+        Fn::ImportValue: !Sub "NEWDMZVPC-FWOUTSubnetARouteTableID"
+
+  NEWDMZVPCAddRoute14:
+    DependsOn:
+      - TransitGateway02
+      - TransitGatewayAttachmentNEWDMZVPC    
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: !Ref AllPrivateBlock
+      TransitGatewayId: !Ref TransitGateway02
+      RouteTableId: 
+        Fn::ImportValue: !Sub "NEWDMZVPC-FWOUTSubnetBRouteTableID"
 
 #### VPC01 route table configuration
 #  VPC01AddRoute1:
