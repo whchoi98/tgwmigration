@@ -150,19 +150,19 @@ Resources:
     Type: "AWS::EC2::TransitGatewayRouteTableAssociation"
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentDMZVPC
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
   TransitGatewayRouteTableAssociationVPC01:
     Type: "AWS::EC2::TransitGatewayRouteTableAssociation"
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC01
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
   TransitGatewayRouteTableAssociationVPC02:
     Type: "AWS::EC2::TransitGatewayRouteTableAssociation"
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC02
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
   TransitGatewayRoute01NEWDMZVPC:
     Type: AWS::EC2::TransitGatewayRoute
@@ -176,28 +176,28 @@ Resources:
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentDMZVPC
       DestinationCidrBlock: !Ref DMZVPCCIDRBlock
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
   TransitGatewayRoute03NEWDMZVPC:
     Type: AWS::EC2::TransitGatewayRoute
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentDMZVPC
       DestinationCidrBlock: !Ref DefaultRouteBlock
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
   TransitGatewayRoute03NEWDMZVPC:
     Type: AWS::EC2::TransitGatewayRoute
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC01
       DestinationCidrBlock: !Ref VPC01CIDRBlock
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
   TransitGatewayRoute04NEWDMZVPC:
     Type: AWS::EC2::TransitGatewayRoute
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentVPC02
       DestinationCidrBlock: !Ref VPC02CIDRBlock
-      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableDMZVPC
+      TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
 ### NEWDMZVPC route table configuration
 
