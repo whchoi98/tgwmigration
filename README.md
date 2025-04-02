@@ -115,10 +115,13 @@ aws cloudformation deploy \
 ```
 cd ~/tgwmigration/
 ./DMZVPC_migration.sh
+```
 
 ### 8. 마이그레이션 원복
+```
 cd ~/tgwmigration/
 ./restore-dmzvpc-route.sh
+```
 
 ## 🛠️ 유틸리티 도구
 ### 🔎 VPC 라우팅 테이블 조회
