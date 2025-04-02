@@ -168,7 +168,7 @@ Resources:
     Type: AWS::EC2::TransitGatewayRoute
     Properties:
       TransitGatewayAttachmentId: !Ref TransitGatewayAttachmentNEWDMZVPC
-      DestinationCidrBlock: !Ref DMZVPCCIDRBlock
+      DestinationCidrBlock: !Ref NEWDMZVPCCIDRBlock
       TransitGatewayRouteTableId: !Ref TransitGatewayRouteTableNEWDMZVPC
 
   TransitGatewayRoute02NEWDMZVPC:
