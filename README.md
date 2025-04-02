@@ -1,5 +1,7 @@
 # 🛰️ TGW Migration with AWS CloudFormation
 
+![TGW 아키텍처 다이어그램](./tgw-architecture.png)
+
 이 리포지토리는 AWS Transit Gateway (TGW) 기반 네트워크 아키텍처를 구성하고, 기존 DMZ VPC에서 신규 DMZ VPC로 마이그레이션하는 CloudFormation 템플릿과 도구들을 포함합니다.
 
 ---
