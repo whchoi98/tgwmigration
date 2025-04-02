@@ -1603,7 +1603,7 @@ Resources:
                   responseData['FwVpceId2'] = VpceId2
                   responseStatus = cfnresponse.SUCCESS
                   cfnresponse.send(event, context, responseStatus, responseData)
-      Runtime: python3.12
+      Runtime: python3.11
       Timeout: 30
 ############################
 # FWINVpceIds.FwVpceId1 , FWINVpceIds.FwVpceId2
