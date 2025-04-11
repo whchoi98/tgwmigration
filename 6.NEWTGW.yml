@@ -77,6 +77,18 @@ Resources:
           Value: !Sub '${AWS::StackName}-NEWDMZVPC-RT'
       TransitGatewayId: !Ref TransitGateway02
 
+####################################
+# Create-TransitGateWay-DX RouteTable #
+####################################
+
+  TransitGatewayRouteTableDX:
+    Type: "AWS::EC2::TransitGatewayRouteTable"
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-DX-RT'
+      TransitGatewayId: !Ref TransitGateway02
+
 ##############################################
 # Connect to the Transit Gateway#
 ##############################################
